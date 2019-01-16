@@ -1,0 +1,278 @@
+Exercitii: 
+Problema 1 :
+    Write a function that returns the largest element in a list.
+Rezolvare : 
+Declaram o functie de timp int , care primeste ca si parametru un Array[]. 
+O sortam , si cel mai mare element va fi array.Lenght-1.
+
+ static int Maxim(int[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+                for (int j = i + 1; j < array.Length; j++)
+                {
+                    int temp;
+                    if (array[i] > array[j])
+                    {
+                        temp = array[i];
+                        array[i] = array[j];
+                        array[j] = temp;
+                    }
+                }
+            return array[array.Lenght-1];
+
+        }
+
+Exercitiu Plus. 
+  Scrieti o functie care primeste un parametru de tip array , si un parametru de tip bool.
+  Functia sa returneze la alegerea utilizatorului cel mai mic , sau cel mai mare element din array.
+Rezolvare :
+  Declaram o functie de timp int , care primeste un parametru de tip Array[] si un parametru de tip bool. 
+  O sortam , la apelare , vom declara o variabila x de tip int , cat timp conditia x==1 , va fi true , variabila de tip bool
+  va fi true , si se va returna elementul cel mai mic , daca conditia x==1 va fi falsa , se va returna cel mai mare element.
+  
+
+
+            int[] Array = { 2, 1, -3, 7, 9, -1 };
+            bool Alege;
+            Console.WriteLine("Alegeti ce doriti : Pentru cel mai mic element apasati tasta 1,\npentru cel mai mare 2");
+            Int32.TryParse(Console.ReadLine(), out int X);
+            if (X == 1)
+            {
+                Alege = true;
+		Console.WriteLine("Cel mai mic element din array este : ");
+                Console.WriteLine(MaximMinim(Array, Alege));
+
+            }
+            else
+            {
+                Alege = false;
+		Console.WriteLine("Cel mai mare element din array este : ");
+                Console.WriteLine(MaximMinim(Array, Alege));
+            }
+
+            Console.ReadLine();
+        }
+
+        static int MaximMinim(int[] array, bool Alege)
+        {
+            for (int i = 0; i < array.Length; i++)
+                for (int j = i + 1; j < array.Length; j++)
+                {
+                    int temp;
+                    if (array[i] > array[j])
+                    {
+                        temp = array[i];
+                        array[i] = array[j];
+                        array[j] = temp;
+                    }
+                }
+            if (Alege == true)
+            {
+                 return array[0];
+
+            }
+            else
+            {
+                 return array[array.Length - 1];
+               
+            }
+
+        }
+       
+    }
+
+
+Problema 2 : 
+    Write function that reverses a list, preferably in place.
+ Rezolvare :
+Declaram o functie de tip static void , care primeste un parametru de tip Array.
+Declaram o variabila de tip int , parcurgem arraiul pana la lungimea/2 al ei . 
+De ce ? fiindca noi dorim sa luam primul element si sa il inversam cu ultimul , 
+SI avem nevoie sa gasim numarul de schimbari .
+primul fiind A[0], ultimul fiind A[Lungime-1]. ca si exercitiu pe un Array cu 5 elemente 
+A[0] -schimbam cu- A[4]				A[0] -schimbam cu- A[5]				
+A[1] -schimbam cu- A[3]		 sau un 	A[1] -schimbam cu- A[4]				
+A[2] -schimbam cu- A[ ?? ]       Array cu	A[2] -schimbam cu- A[3]				
+				 6elemente	
+vrem sa gasim numarul de schimbari . 
+daca e de 5 elemente vor fi 2 schimbari , daca e de 6 elemente vor fi 3 schimbari 	
+
+		
+ static void ReverseInPlace(int[] array)
+        {
+            int temp;
+            int x = array.Length / 2;
+            for (int i = 0; i < x; i++)
+            {
+
+                temp = array[i];
+                array[i] = array[array.Length - 1 - i];
+                array[array.Length - 1 - i] = temp;
+
+            }
+
+        }
+
+Exercitiu plus :
+Scriem o functie sa faca interschimbarea ,care primeste un parametru de tip array , si 2 parametri de tip int .
+Vom apela apoi in interiorul functiei ReverseInPlace , functia de inversare .
+
+
+   static void interschimbare(int[] array, int i , int j)
+        {
+            int temp;
+            temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+            
+        }
+        static void ReverseInPlace(int[] array)
+        {
+            int x = array.Length / 2;
+            for (int i = 0; i < x; i++)
+            {
+                interschimbare(array,i, array.Length - 1 - i);
+               
+            }
+
+        }
+
+
+
+
+
+
+
+   // Write a function that checks whether an element occurs in a list.
+            int[] arai = { 2, 3, 4, 5, 6, 7 };
+            Console.WriteLine("ce numar vreti verificat");
+            Int32.TryParse(Console.ReadLine(), out int x);
+            Check(arai, x);
+            Console.ReadLine();
+
+        }
+        static int Check(int[] Arr, int x)
+        {
+
+            for (int i = 0; i < Arr.Length; i++)
+            {
+                if (x == Arr[i])
+                {
+                    Console.WriteLine("numarul " + x + "   se afla in array ");
+                    return x;
+
+                }
+
+            }
+
+            for (int i = 0; i < Arr.Length; i++)
+            {
+                if (x != Arr[i])
+                {
+                    Console.WriteLine("numarul  " + x + "  nu se afla in array");
+                    return x;
+
+                }
+
+            }
+            return x; /// Musai 3 returnuri ? , posibila rezolvare mai estetica ?? 
+			// si 2 foruri ?? wat?
+
+        }
+    }
+}
+
+
+Problema ..
+     // Write a function that returns the elements on odd ( IMPAR) positions in a list. trebe float :)) 
+            int[] arai = { 3, 2, 5, 8, 9 };
+            Odd(arai);
+            
+
+
+            Console.ReadLine();
+        }
+        public static bool testamImpar(int value)
+        {
+            return value % 2 != 0;
+        }
+//
+// 
+la fel se poate cu par .. + un if( daca vrem sa alegem ) .. si se poate .. cu declaram o variabila citita de la 
+tastatura in main , daca e ==1 , atunci punem par / altfel impar .. bool .. 
+public static bool testamPar(int value)
+        {
+            return value % 2 == 0;
+        }
+///
+
+        static void Odd(int[] arrai)           ////e void .. se poate static ?? cum return float ? 
+        {
+            for (int i = 0; i < arrai.Length; i++)
+            {
+                if (testamImpar(arrai[i]))
+                {
+                    Console.WriteLine(arrai[i]);
+
+
+                }
+
+            }
+        }
+
+//
+ exercitiu
+
+            // Write a function that computes the running total of a list. Adica aduna suma elementelor
+            int[] arai = { 1, 2, 3, 4, 5 };
+            Suma(arai);
+            Console.ReadLine();
+        }
+
+        static void Suma(int[] array)
+        {
+            int S=0;
+            foreach (var item in array)
+            {
+                S = S + item;
+            }
+            Console.WriteLine(S);
+        }
+
+
+//
+media aritmetica ->> 
+
+palindromu 
+
+            int[] test = { 1, 2, 3, 2, 1 };
+            C(test);
+           
+
+            Console.ReadLine();
+        }
+        static void C(int[] C)
+        {
+            for (int i = 0; i < C.Length; i++)
+                    if (C[i] == C[C.Length-i-1])
+                    {
+                        Console.WriteLine("e palindrom");
+                                            break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("nu e ");
+                        break;
+                    }
+                    
+        }
+
+
+
+
+
+
+
+
+
+
